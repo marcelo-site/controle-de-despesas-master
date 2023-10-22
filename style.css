@@ -22,7 +22,7 @@ body {
 
 .container {
   margin: 20px auto;
-  max-width: 350px;
+  width: 350px;
 }
 
 h1 {
