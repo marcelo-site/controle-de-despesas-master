@@ -66,13 +66,14 @@ h4 {
   margin: 5px 0;
 }
 
-.money.plus {
+.plus {
   color: #2ecc71;
 }
 
-.money.minus {
+.minus {
   color: #c0392b;
 }
+
 
 label {
   display: inline-block;
@@ -119,8 +120,9 @@ input[type='number'] {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
   position: relative;
   padding: 10px;
   margin: 10px 0;
@@ -142,6 +144,10 @@ input[type='number'] {
   color: #c0392b;
 }
 
+.transactions li span:nth-child(1) {
+  color: black;
+}
+
 .delete-btn {
   cursor: pointer;
   background-color: #e74c3c;
@@ -153,11 +159,6 @@ input[type='number'] {
   position: absolute;
   top: 20%;
   right: -25px;
-  transition: opacity 0.3s ease;
-}
-
-.transactions li:hover .delete-btn {
-  opacity: 1;
 }
 
 .type {

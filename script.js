@@ -7,12 +7,9 @@ const inputTransactionName = document.querySelector('#text')
 const inputTransactionAmount = document.querySelector('#amount')
 const inputTransactionType = document.querySelectorAll('.type input')
 const labelTransactionType =document.querySelectorAll('.type label')
-// console.log(labelTransactionType)
-// labelTransactionType[1].classList.add('active')
 
 inputTransactionType.forEach((el, i) => {
     el.addEventListener('change', () => {
-        console.log(labelTransactionType)
         labelTransactionType.forEach(label => label.classList.remove('active'))
         if(el.checked) labelTransactionType[i].classList.add('active')
     })
@@ -35,7 +32,7 @@ const addTransactionsDOM = transaction => {
     const amountWithOperator = Math.abs(transaction.amount)
     const li = document.createElement('li')
     li.classList.add(cssClass)
-    li.innerHTML = `${transaction.name} <span>${operator} ${amountWithOperator
+    li.innerHTML = `<span>${transaction.name}</span><span>${operator} ${amountWithOperator
         .toLocaleString('pt-br', {
             style: 'currency',
             currency: 'BRL'
@@ -67,8 +64,9 @@ const updateBalanceValues = () =>{
            return accumulator + value
         }, 0)
         .toFixed(2)
-    ) 
-    // const 
+    )
+    balanceDisplay.classList.remove('minus')
+    if(total < 0) balanceDisplay.classList.add('minus')
     balanceDisplay.textContent = parseFloat(total).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL' })
     incomeDisplay.textContent = parseFloat(income).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL' })
     expenseDisplay.textContent = parseFloat(expense).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL' })
@@ -83,7 +81,8 @@ init()
 const updateLocalStorage = () => {
     localStorage.setItem('transactions', JSON.stringify(transactions))
 }
-const generateID= () => Math.round(Math.random() * 1000)
+const generateID= () => Date.now()
+// Math.round(Math.random() * 1000)
 
 form.addEventListener('submit', e => {
     e.preventDefault()
