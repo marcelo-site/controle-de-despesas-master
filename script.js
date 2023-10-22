@@ -33,9 +33,7 @@ const addTransactionsDOM = transaction => {
     const li = document.createElement('li')
     li.classList.add(cssClass)
     li.innerHTML = `<span>${transaction.name}</span><span>${operator} ${amountWithOperator
-        .toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL'
+        .toLocaleString('pt-br', { style: 'currency', currency: 'BRL'
         })}</span>
     <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>`
     transactionUl.append(li)
@@ -63,9 +61,7 @@ const updateBalanceValues = () =>{
     const expense = Math.abs(
         transactionAmounts
         .filter(value => value < 0)
-        .reduce((accumulator, value)=> {
-           return accumulator + value
-        }, 0)
+        .reduce((accumulator, value)=> accumulator + value, 0)
         .toFixed(2)
     )
     balanceDisplay.classList.remove('minus')
@@ -88,7 +84,6 @@ const generateID= () => Date.now()
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    
     const transactionName = inputTransactionName.value.trim()
     const transactionAmount = inputTransactionAmount.value.trim().replace(',','.')
     if(inputTransactionName === '' || inputTransactionAmount === '') {
@@ -96,7 +91,6 @@ form.addEventListener('submit', e => {
         return
     }
     const type = e.target.type.value
-   
     const transaction = { 
         id: generateID(),
          name: transactionName, 
