@@ -41,10 +41,13 @@ const addTransactionsDOM = transaction => {
     transactionUl.append(li)
 }
 const removeTransaction = ID => {
+   const res = confirm('Deseja deletar transação?')
+   if(res === true) {
     transactions = transactions
     .filter(transaction => transaction.id != ID)
     updateLocalStorage()
     init()
+   }
 }
 
 const updateBalanceValues = () =>{
@@ -82,7 +85,6 @@ const updateLocalStorage = () => {
     localStorage.setItem('transactions', JSON.stringify(transactions))
 }
 const generateID= () => Date.now()
-// Math.round(Math.random() * 1000)
 
 form.addEventListener('submit', e => {
     e.preventDefault()
